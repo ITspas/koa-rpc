@@ -1,16 +1,4 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var options = {
-        url: '/rpc'
-      , methodNames: [ 'foo' ]
-      , timeout: 5 * 1000 // optional, defaults to 30 seconds
-    }
-
-  , client = require('rpc-http')(options)
-
-client.foo('world1111',"123", function (err, message,hha) {
-  console.log("fdsfsl",message,hha)
-})
-},{"rpc-http":8}],2:[function(require,module,exports){
 var isBuffer = require('is-buffer')
 
 var flat = module.exports = flatten
@@ -116,7 +104,7 @@ function unflatten(target, opts) {
   return result
 }
 
-},{"is-buffer":5}],3:[function(require,module,exports){
+},{"is-buffer":4}],2:[function(require,module,exports){
 var isFunction = require('is-function')
 
 module.exports = forEach
@@ -164,7 +152,7 @@ function forEachObject(object, iterator, context) {
     }
 }
 
-},{"is-function":6}],4:[function(require,module,exports){
+},{"is-function":5}],3:[function(require,module,exports){
 (function (global){
 if (typeof window !== "undefined") {
     module.exports = window;
@@ -177,7 +165,7 @@ if (typeof window !== "undefined") {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],5:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -200,7 +188,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 module.exports = isFunction
 
 var toString = Object.prototype.toString
@@ -217,7 +205,7 @@ function isFunction (fn) {
       fn === window.prompt))
 };
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 var trim = require('trim')
   , forEach = require('for-each')
   , isArray = function(arg) {
@@ -249,9 +237,9 @@ module.exports = function (headers) {
 
   return result
 }
-},{"for-each":3,"trim":10}],8:[function(require,module,exports){
+},{"for-each":2,"trim":9}],7:[function(require,module,exports){
 module.exports = require('./client')(require('xhr'))
-},{"./client":9,"xhr":11}],9:[function(require,module,exports){
+},{"./client":8,"xhr":10}],8:[function(require,module,exports){
 var unflatten = require('flat').unflatten
 
   , makeError = function (obj) {
@@ -304,7 +292,7 @@ var unflatten = require('flat').unflatten
 
 module.exports = setupClient
 
-},{"flat":2}],10:[function(require,module,exports){
+},{"flat":1}],9:[function(require,module,exports){
 
 exports = module.exports = trim;
 
@@ -320,7 +308,7 @@ exports.right = function(str){
   return str.replace(/\s*$/, '');
 };
 
-},{}],11:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 "use strict";
 var window = require("global/window")
 var isFunction = require("is-function")
@@ -557,7 +545,7 @@ function getXml(xhr) {
 
 function noop() {}
 
-},{"global/window":4,"is-function":6,"parse-headers":7,"xtend":12}],12:[function(require,module,exports){
+},{"global/window":3,"is-function":5,"parse-headers":6,"xtend":11}],11:[function(require,module,exports){
 module.exports = extend
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -578,4 +566,6 @@ function extend() {
     return target
 }
 
-},{}]},{},[1]);
+},{}],12:[function(require,module,exports){
+window.QyRpc=require('rpc-http')({url:'/rpc',methodNames:["login","regist","list"],timeout:5*1000});
+},{"rpc-http":7}]},{},[12]);

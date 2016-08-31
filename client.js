@@ -1,11 +1,14 @@
-var options = {
-        url: '/rpc'
-      , methodNames: [ 'foo' ]
-      , timeout: 5 * 1000 // optional, defaults to 30 seconds
-    }
-
-  , client = require('rpc-http')(options)
-
-client.foo('world1111',"123", function (err, message,hha) {
-  console.log("fdsfsl",message,hha)
-})
+const fs = require('fs'),
+	path = require('path'),
+	child_process = require('child_process'),
+	methods = [];
+fs.existsSync('rpc') && fs.readdirSync('rpc').forEach(file => {
+	var module = require(path.join(__dirname, 'rpc', file));
+	module && Object.keys(module).forEach(k => {
+		methods.push(k);
+	})
+});
+var cnt = "window.QyRpc=require('rpc-http')({url:'/rpc',methodNames:" + JSON.stringify(methods) + ",timeout:5*1000});";
+fs.writeFileSync(path.join(__dirname, 'rpc.js'), cnt);
+child_process.execSync('browserify rpc.js>www/rpc.js').toString();
+fs.unlinkSync(path.join(__dirname,'rpc.js'));
