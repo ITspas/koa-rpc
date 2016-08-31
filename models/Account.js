@@ -4,7 +4,8 @@ module.exports = function(db, cb) {
 			type: 'serial',
 			key: true
 		},
-		nick: String
+		nick: String,
+		pass: String,
 	});
 	return cb();
 }
