@@ -1,0 +1,21 @@
+{
+  "name": "qygame",
+  "version": "1.0.0",
+  "description": "qygame",
+  "main": "app.js",
+  "dependencies": {
+    "koa": "^1.2.2",
+    "koa-route": "^2.4.2",
+    "koa-session": "^3.3.1",
+    "mysql": "^2.11.1",
+    "orm": "^3.1.0",
+    "rom": "^0.2.2",
+    "rpc-http": "^3.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yenole",
+  "license": "ISC"
+}
