@@ -567,5 +567,5 @@ function extend() {
 }
 
 },{}],12:[function(require,module,exports){
-window.QyRpc=require('rpc-http')({url:'/rpc',methodNames:["login","regist"],timeout:5*1000});
+window.QyRpc=require('rpc-http')({url:'http://127.0.0.1:8080/rpc',methodNames:["login","logout","regist","createRole"],timeout:10*1000});
 },{"rpc-http":7}]},{},[12]);

@@ -4,11 +4,14 @@ var route = require('koa-route'),
 	orm = require('./lib/koa-orm'),
 	app = koa();
 
+
+
+app.keys = ['some secret hurr'];
 app.use(session(app));
 // logger
 app.use(require('./lib/koa-log'));
 // db
-app.use(orm("mysql://root:root@localhost/orm_test", {
+app.use(orm("mysql://root:root@localhost/qyrpc_avg", {
 	define: function(db, models) {
 		db.load('./models/Account', (err) => {
 			if (err) throw err
@@ -17,7 +20,6 @@ app.use(orm("mysql://root:root@localhost/orm_test", {
 }));
 // rpc
 app.use(route.post('/rpc/*', require('./lib/koa-rpc')));
+app.use(route.get('/*', require('./lib/koa-file')));
 
-app.use(require('./lib/koa-file'));
-
-app.listen(3000);
+app.listen(8080);
