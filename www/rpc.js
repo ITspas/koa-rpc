@@ -242,56 +242,58 @@ module.exports = require('./client')(require('xhr'))
 },{"./client":8,"xhr":10}],8:[function(require,module,exports){
 var unflatten = require('flat').unflatten
 
-  , makeError = function (obj) {
-      var err = new Error(obj.message)
+, makeError = function(obj) {
+  var err = new Error(obj.message)
 
-      Object.keys(obj).forEach(function (key) {
-        err[key] = obj[key]
-      })
+  Object.keys(obj).forEach(function(key) {
+    err[key] = obj[key]
+  })
 
-      return err
-    }
+  return err
+}
 
-  , setupClient = function (request) {
-      return function (options) {
-        var remote = {}
-          , encoding = options.encoding || JSON
+, setupClient = function(request) {
+  return function(options) {
+    var remote = {},
+      encoding = options.encoding || JSON
 
-        options.methodNames.forEach(function (name) {
-          remote[name] = function () {
-            var args = Array.prototype.slice.call(arguments)
-              , sync = typeof(args[args.length - 1]) !== 'function'
-              , callback = sync ? undefined : args.pop()
+    options.methodNames.forEach(function(name) {
+      remote[name] = function() {
+        var args = Array.prototype.slice.call(arguments),
+          sync = typeof(args[args.length - 1]) !== 'function',
+          callback = sync ? undefined : args.pop()
 
-            request({
-                url: options.url + '/' + name
-              , method: 'POST'
-              , body: encoding.stringify({ args: args, sync: sync })
-              , timeout: options.timeout || 30 * 1000
-            }, function (err, resp, body) {
-                var args;
-                if (sync) return
-                if (err) return callback(err)
+        request({
+          url: options.url + '/' + name,
+          method: 'POST',
+          body: encoding.stringify({
+            args: args,
+            sync: sync
+          }),
+          timeout: options.timeout || 30 * 1000,
+          withCredentials: true
+        }, function(err, resp, body) {
+          var args;
+          if (sync) return
+          if (err) return callback(err)
 
-                try {
-                  args = encoding.parse(body)
-                  if (args[0]) args[0] = makeError(args[0])
-                } catch (err) {
-                  return callback(err)
-                }
-
-                callback.apply(null, args)
-              }
-            )
+          try {
+            args = encoding.parse(body)
+            if (args[0]) args[0] = makeError(args[0])
+          } catch (err) {
+            return callback(err)
           }
-        })
 
-        return unflatten(remote)
+          callback.apply(null, args)
+        })
       }
-    }
+    })
+
+    return unflatten(remote)
+  }
+}
 
 module.exports = setupClient
-
 },{"flat":1}],9:[function(require,module,exports){
 
 exports = module.exports = trim;
@@ -567,5 +569,5 @@ function extend() {
 }
 
 },{}],12:[function(require,module,exports){
-window.QyRpc=require('rpc-http')({url:'http://127.0.0.1:8080/rpc',methodNames:["login","logout","regist","createRole"],timeout:10*1000});
+window.QyRpc=require('rpc-http')({url:'http://115.29.145.227:8081/rpc',methodNames:["login","logout","regist","createRole","serverList"],timeout:10*1000});
 },{"rpc-http":7}]},{},[12]);

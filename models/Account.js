@@ -2,8 +2,9 @@ module.exports = function(db, cb) {
 	db.define('Account', {
 		uid: {type: 'serial', key: true }, // UID
 		user:String, // 用户名
-		pass:String, // 密码
-		viplevel: {type:'integer'}, // VIP等级
+		pass:String, // 密码,
+		server:{type:'integer'}, // 服务器
+		vipLevel: {type:'integer'}, // VIP等级
 		level: {type:'integer'}, // 等级
 		iconImage: {type:'integer'}, // 	头像图片名
 		nickName: String, // 昵称
@@ -29,6 +30,14 @@ module.exports = function(db, cb) {
 		belt: {type:'integer'}, // 腰饰ID
 		face: {type:'integer'}, // 妆容ID
 		special: {type:'integer'}, // 特殊装扮ID
+	},{
+		methods: {
+			client: function() {
+				var ret = Object.assign(this);
+				ret.pass = null;
+				return ret;
+			}
+		}
 	});
 	return cb();
 }

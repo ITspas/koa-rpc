@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>API</title>
+</head>
+<body>
+	<pre>
+// 登录
+QyRcp.login('用户名','密码',function(err,userInfo|null));
+// 注册
+QyRcp.regist('用户名','密码',function(err,true|false));
+// 注销
+QyRcp.logout(function(err,true));
+// 服务器列表
+QyRcp.serverList(function(err,[{id:0,name:'xxx',statue:0}]))
+// 创建角色
+QyRcp.createRole(iconImage,nickName,serverId,function(err,userInfo|null))
+	</pre>
+</body>
+</html>

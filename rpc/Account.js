@@ -1,12 +1,14 @@
+var path = require('path');
+
 module.exports = {
 	login: function(user, pass, cb) {
 		this.db.models.Account.find({
 			user: user,
 			pass: pass
-		}, 1, (err, entities) => {
-			if (entities.length > 0) {
-				this.session.user = entities[0];
-				cb(err, entities[0]);
+		}, 1, (err, users) => {
+			if (users.length > 0) {
+				this.session.user = users[0];
+				cb(err, users[0].client());
 				return;
 			}
 			cb(err, null);
@@ -25,27 +27,31 @@ module.exports = {
 				this.db.models.Account.create({
 					user: user,
 					pass: pass
-				}, (err, entities) => {
-					cb(err, entities);
+				}, (err, user) => {
+					cb(err, !!user);
 				})
 			else
 				cb(err, false);
 		})
 	},
-	createRole: function(nickName, cb) {
-		if (this.session.user) {
-			var user = this.session.user;
-			this.db.models.Account.get(user.uid, (err, user) => {
-				if (!err) {
-					user.nickName = nickName;
-					user.save((err, user) => {
+	createRole: function(iconImage, nickName, serverId, cb) {
+		console.log(this.session);
+		if (this.session.user)
+			this.db.models.Account.get(this.session.user.uid, (err, user) => {
+				if (!err && !user.nickName) {
+					var props = Object.assign(require('./../data/Account.js').default);
+					props.iconImage = iconImage;
+					props.nickName = nickName;
+					props.server = serverId;
+					user.save(props, (err, user) => {
+						console.log(err,user);
 						err || (this.session.user = user);
-						cb(err, user);
+						cb(err, user.client());
 					})
 				} else
 					cb(err, false);
 			});
-		} else
+		else
 			cb(null, false);
 	}
 }
