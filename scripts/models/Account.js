@@ -6,12 +6,14 @@ module.exports = function(db, cb) {
 		server:{type:'integer'}, // 服务器
 		vipLevel: {type:'integer'}, // VIP等级
 		level: {type:'integer'}, // 等级
-		iconImage: {type:'integer'}, // 	头像图片名
+		iconImage: String, // 	头像图片名
 		nickName: String, // 昵称
 		stone: {type:'integer'}, // 宝石
 		gold: {type:'integer'}, // 金币
 		power: {type:'integer'}, // 体力
 		exp: {type:'integer'}, // 经验值
+		goldFree: {type:'integer'}, // 金币免费抽奖次数
+		stoneFree: {type:'integer'}, // 钻石免费抽奖次数
 		storyId: {type:'integer'}, // 当前进行剧情ID
 		chapterId: {type:'integer'}, // 当前进行章节ID
 		questId: {type:'integer'}, // 当前进行关卡ID
@@ -30,6 +32,7 @@ module.exports = function(db, cb) {
 		belt: {type:'integer'}, // 腰饰ID
 		face: {type:'integer'}, // 妆容ID
 		special: {type:'integer'}, // 特殊装扮ID
+		crystal: {type:'integer'}, // crystal
 	},{
 		methods: {
 			client: function() {

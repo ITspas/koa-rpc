@@ -15,6 +15,12 @@ QyRcp.logout(function(err,true));
 QyRcp.serverList(function(err,[{id:0,name:'xxx',statue:0}]))
 // 创建角色
 QyRcp.createRole(iconImage,nickName,serverId,function(err,userInfo|null))
+// 抽奖
+QyRcp.draw(1|2|3|4,function(err,data))
+// 兑换
+QyRcp.canRedeem(fashionId,function(err,result(bool),reason))
+// 邮件
+QyRcp.getAllMails(function(err,data))
 	</pre>
 </body>
 </html>

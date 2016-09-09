@@ -271,7 +271,7 @@ var unflatten = require('flat').unflatten
             sync: sync
           }),
           timeout: options.timeout || 30 * 1000,
-          withCredentials: true
+          withCredentials: options.credentials
         }, function(err, resp, body) {
           var args;
           if (sync) return
@@ -569,5 +569,5 @@ function extend() {
 }
 
 },{}],12:[function(require,module,exports){
-window.QyRpc=require('rpc-http')({url:'http://115.29.145.227:8081/rpc',methodNames:["login","logout","regist","createRole","serverList"],timeout:10*1000});
-},{"rpc-http":7}]},{},[12]);
+window.QyRpc=require('rpc-koa-http')({url:'http://127.0.0.1:8081/rpc',credentials:true,methodNames:["login","logout","regist","createRole","draw","canRedeem","getAllMails","serverList"],timeout:10*1000});
+},{"rpc-koa-http":7}]},{},[12]);

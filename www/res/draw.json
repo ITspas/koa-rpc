@@ -1,0 +1,72 @@
+[
+  {
+    "fashionId": 10000,
+    "type": "3#4",
+    "probability": "100#112"
+  },
+  {
+    "fashionId": 20000,
+    "type": "1#2#3#4",
+    "probability": "150#100#25#75"
+  },
+  {
+    "fashionId": 25000,
+    "type": "3#4",
+    "probability": "100#50"
+  },
+  {
+    "fashionId": 30000,
+    "type": "1#2#3#4",
+    "probability": "150#100#25#75"
+  },
+  {
+    "fashionId": 30001,
+    "type": "3#4",
+    "probability": "100#50"
+  },
+  {
+    "fashionId": 35000,
+    "type": "3#4",
+    "probability": "100#50"
+  },
+  {
+    "fashionId": 60000,
+    "type": "3#4",
+    "probability": "100#50"
+  },
+  {
+    "fashionId": 55000,
+    "type": "1#2#3#4",
+    "probability": "150#100#25#75"
+  },
+  {
+    "fashionId": 65000,
+    "type": "3#4",
+    "probability": "100#112"
+  },
+  {
+    "fashionId": 50000,
+    "type": "3#4",
+    "probability": "100#50"
+  },
+  {
+    "fashionId": 70000,
+    "type": "1#2#3#4",
+    "probability": "200#250#25#75"
+  },
+  {
+    "fashionId": 75000,
+    "type": "3#4",
+    "probability": "100#112"
+  },
+  {
+    "fashionId": 15000,
+    "type": "1#2",
+    "probability": "350#450"
+  },
+  {
+    "fashionId": 10001,
+    "type": "3#4",
+    "probability": "100#114"
+  }
+]

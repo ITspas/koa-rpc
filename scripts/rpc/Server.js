@@ -1,4 +1,12 @@
-module.exports = {
+/**
+ * @class
+ */
+var Server = {
+	/**
+	 * 服务器列表
+	 * @param  {Function} cb 
+	 * @return {null}      
+	 */
 	serverList: function(cb) {
 		cb(null, [{
 			id: 0,
@@ -14,4 +22,7 @@ module.exports = {
 			statue: 0
 		}])
 	}
-}
+};
+
+
+module.exports = Server;

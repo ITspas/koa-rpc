@@ -6,6 +6,8 @@ module.exports = {
 		"gold": 99999,
 		"power": 20,
 		"exp": 0,
+		"goldFree": 0,
+		"stoneFree": 0,
 		"storyId": 4000,
 		"chapterId": 3000,
 		"questId": 5000,
@@ -23,6 +25,7 @@ module.exports = {
 		"handTake": 70000,
 		"belt": 75000,
 		"face": 0,
-		"special": 0
+		"special": 0,
+		"crystal": 999
 	}
 }
