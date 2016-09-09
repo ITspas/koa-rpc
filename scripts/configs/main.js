@@ -5,6 +5,6 @@ module.exports = {
 		pass: 'root',
 		databaase: 'qyrpc_avg'
 	},
-	models: ['Account', 'Mails'],
+	modules: ['Account',"Mail"],
 	port: 8081,
 }
