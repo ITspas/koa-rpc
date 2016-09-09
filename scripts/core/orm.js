@@ -12,6 +12,7 @@ module.exports = {
 	types: {
 		String: String,
 		Object: Object,
+		Date: Date,
 		Float: Number,
 		Integer: {
 			type: 'integer'
