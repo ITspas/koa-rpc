@@ -1,61 +1,8 @@
-var path = require('path');
-
 /**
  * @class
+ * @type {Object}
  */
 var Account = {
-	/**
-	 * 登陆
-	 * @param  {string}   user 账号
-	 * @param  {string}   pass 密码
-	 * @param  {Function} cb   
-	 * @return {null}        
-	 */
-	login: function(user, pass, cb) {
-		this.db.models.Account.find({
-			user: user,
-			pass: pass
-		}, 1, (err, users) => {
-			if (users.length > 0) {
-				this.session.user = users[0];
-				cb(err, users[0].client());
-				return;
-			}
-			cb(err, null);
-		})
-	},
-	/**
-	 * 注销
-	 * @param  {Function} cb 
-	 * @return {null}      
-	 */
-	logout: function(cb) {
-		this.session = null;
-		cb(null, true);
-	},
-	/**
-	 * 注册
-	 * @param  {string}   user 账号
-	 * @param  {string}   pass 密码
-	 * @param  {Function} cb   
-	 * @return {null}        
-	 */
-	regist: function(user, pass, cb) {
-		this.db.models.Account.count({
-			user: user,
-			pass: pass
-		}, (err, count) => {
-			if (count == 0)
-				this.db.models.Account.create({
-					user: user,
-					pass: pass
-				}, (err, user) => {
-					cb(err, !!user);
-				})
-			else
-				cb(err, false);
-		})
-	},
 	/**
 	 * 创建角色
 	 * @param  {string}   iconImage 头像
@@ -68,7 +15,7 @@ var Account = {
 		if (this.session.user)
 			this.db.models.Account.get(this.session.user.uid, (err, user) => {
 				if (!err && !user.nickName) {
-					var props = Object.assign(require('./../data/Account.js').default);
+					var props = Object.assign(this.utils.loadData('Account.js').default);
 					props.iconImage = iconImage;
 					props.nickName = nickName;
 					props.server = serverId;
@@ -90,8 +37,8 @@ var Account = {
 	 */
 	draw: function(drawtype, cb) {
 		if (this.session.user) {
-			var props = Object.assign(require('./../data/Draw.js'));
-			var clothinf = Object.assign(require('./../data/Fashion.js'));
+			var props = Object.assign(this.utils.loadData('Draw.js'));
+			var clothinf = Object.assign(this.utils.loadData('Draw.js'));
 			var cloth = [];
 			var clothMust = [];
 			var result = [];
@@ -209,32 +156,7 @@ var Account = {
 		} else
 			cb(null, false, "请先登录");
 	},
-	/**
-	 * 获取邮件
-	 * @param  {string}   fashionId 要兑换的服装id
-	 * @param  {Function} cb       
-	 * @return {null}            
-	 */
-	getAllMails: function(cb) {
-		if (this.session.user) {
-			this.db.models.Mails.find({
-				uid: this.session.user.uid
-			}, (err, mail) => {
-				var mails = [];
-				for (var i = 0; i < mail.length; i++) {
-					var inf = {};
-					inf["type"] = mail[i].type;
-					inf["title"] = mail[i].title;
-					inf["sendTime"] = mail[i].sendTime ? new Date(mail[i].sendTime).toLocaleString() : null;
-					inf["overTime"] = mail[i].overTime ? new Date(mail[i].overTime).toLocaleString() : null;
-					inf["content"] = mail[i].content;
-					inf["award"] = mail[i].award;
-					mails.push(inf);
-				};
-				cb(err, mails);
-			});
-		} else
-			cb(err, "请先登录");
-	}
+
 };
+
 module.exports = Account;

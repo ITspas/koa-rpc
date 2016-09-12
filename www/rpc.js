@@ -569,5 +569,5 @@ function extend() {
 }
 
 },{}],12:[function(require,module,exports){
-window.QyRpc=require('rpc-koa-http')({url:'http://127.0.0.1:8081/rpc',credentials:true,methodNames:["login","logout","regist","createRole","draw","canRedeem","getAllMails","serverList"],timeout:10*1000});
+window.QyRpc=require('rpc-koa-http')({url:'http://127.0.0.1:8081/rpc',credentials:true,methodNames:["login","logout","regist","getAllMails","createRole","draw","canRedeem","serverList"],timeout:10*1000});
 },{"rpc-koa-http":7}]},{},[12]);

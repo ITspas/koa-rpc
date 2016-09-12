@@ -8,7 +8,13 @@ function merge(a, b) {
 	});
 	return a;
 }
-module.exports = {
+
+
+/**
+ * @class
+ * @type {Object}
+ */
+var Utils = {
 	types: {
 		String: String,
 		Object: Object,
@@ -16,8 +22,17 @@ module.exports = {
 		Float: Number,
 		Integer: {
 			type: 'integer'
+		},
+		Serial: {
+			type: 'serial'
 		}
 	},
+	/**
+	 * 加载模块
+	 * @param  {Array} modules 模块列表
+	 * @param  {db} db      数据库对象
+	 * @return {null}        
+	 */
 	loadModule: function(modules, db) {
 		var models = {};
 		modules && modules.forEach(k => {
@@ -43,5 +58,23 @@ module.exports = {
 				if (err) throw err;
 			});
 		});
+	},
+	/**
+	 * 加载数据
+	 * @param  {string} key    数据名
+	 * @param  {object} defVal 默认值
+	 * @return {null}        
+	 */
+	loadData: function(key, defVal) {
+		if (fs.existsSync(path.join(__dirname, '../data', key))) {
+			try {
+				return require(path.join(__dirname, '../data', key));
+			} catch (ex) {
+				console.err(ex);
+			}
+		}
+		return defVal || {};
 	}
-}
+};
+
+module.exports = Utils;

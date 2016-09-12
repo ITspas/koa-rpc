@@ -2,9 +2,9 @@ module.exports = {
 	define: function(Types) {
 		return {
 			props: {
-				uid: Types.Integer, // UID
+				uid: Types.Serial, // UID
 				user: Types.String, // 用户名
-				pass: Types.String, // 密码,
+				pass: Types.String, // 密码
 			},
 			id: ['uid'],
 			methods: {

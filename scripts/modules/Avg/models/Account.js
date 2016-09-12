@@ -2,11 +2,11 @@ module.exports = {
 	define: function(Types) {
 		return {
 			props: {
-				server: Types.Integer, // 服务器
+				server: Types.Integer, // 服务器,
+				nickName: String, // 昵称
 				vipLevel: Types.Integer, // VIP等级
 				level: Types.Integer, // 等级
 				iconImage: String, // 	头像图片名
-				nickName: String, // 昵称
 				stone: Types.Integer, // 宝石
 				gold: Types.Integer, // 金币
 				power: Types.Integer, // 体力
